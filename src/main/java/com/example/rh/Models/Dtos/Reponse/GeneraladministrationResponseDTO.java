@@ -5,14 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class GeneraladministrationResponseDTO {
-    private String cin;
-    private String lastName;
-    private String firstName;
-    private String email;
     private String company;
+    private List<HrAdministrationResponseDTO> hradministratoList;
+
 }

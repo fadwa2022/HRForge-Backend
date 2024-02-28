@@ -12,18 +12,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Generaladministration {
+public class Generaladministration extends User {
     @Id
     private String cin;
-    private String lastname;
-    private String firstname;
-    private String email;
-    private String password;
+
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
-    @OneToMany(mappedBy = "admin_id", cascade = CascadeType.ALL)
-    private List<Hradministrato> hradministratoList;
+
+    @OneToMany(mappedBy = "generaladministration",
+            cascade = CascadeType.ALL
+    )
+    private List<HrAdministrator> hradministratoList;
 
 
 }

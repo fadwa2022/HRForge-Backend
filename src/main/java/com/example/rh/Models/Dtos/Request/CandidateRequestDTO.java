@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -24,6 +25,6 @@ public class CandidateRequestDTO {
     @Email(message = "Email should be valid")
     private String email;
     @NotBlank(message = "CV is mandatory")
-    private byte[] cvCandidat;
+    private MultipartFile cvCandidat;
 
 }

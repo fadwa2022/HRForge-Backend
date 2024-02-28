@@ -3,7 +3,6 @@ package com.example.rh.Models.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -13,13 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Hradministrato {
+public class HrAdministrator extends User{
     @Id
     private String cin;
-    private String email;
-    private String password;
-    private String firstname;
-    private String lastname;
+
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
@@ -28,8 +24,11 @@ public class Hradministrato {
     @JoinColumn(name = "admin_id")
     private Generaladministration generaladministration;
 
-    @OneToMany(mappedBy = "rhadministrato_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "hradministrator",
+            cascade = CascadeType.ALL)
     private List<Offer> offerList;
-    @OneToMany(mappedBy = "rhadministrato_id", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "hradministrator",
+            cascade = CascadeType.ALL)
     private List<Personnel> personnelList;
 }

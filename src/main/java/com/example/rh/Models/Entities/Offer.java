@@ -1,9 +1,8 @@
 package com.example.rh.Models.Entities;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
-import org.hibernate.engine.internal.StatisticalLoggingSessionEventListener;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,15 +17,32 @@ import java.util.List;
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
+    private Long id ;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
+
+    private String description;
+
+    private String city;
+
+    private Double salary;
+
+    private String image;
+
     private LocalDate dateCreation;
-    private  String discription;
+
     private  String Profile;
+
     @ManyToOne
     @JoinColumn(name = "rhadministrato_id")
-    private Hradministrato hradministrato;
-    @OneToMany(mappedBy = "offre_id", cascade = CascadeType.ALL)
+    private HrAdministrator hradministrator;
+
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
     private List<CandidacyStatistics> candidacyStatisticsList;
-    @OneToMany (mappedBy = "offre_id", cascade = CascadeType.ALL)
+
+    @OneToMany (mappedBy = "offer", cascade = CascadeType.ALL)
     private List<Application> applicationList;
 }

@@ -2,8 +2,10 @@ package com.example.rh.Models.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,24 +15,37 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Personnel {
+public class Personnel extends User {
     @Id
     private String cin;
-    private String firstname;
-    private String lastname;
-    private String adresse;
+
     private LocalDate dateofbirth;
-    private Integer telephone;
-    private Double remuneration;
+
     @ManyToOne
     @JoinColumn(name = "rhadministrato_id")
-    private Hradministrato hradministrato;
-    @OneToMany(mappedBy = "personnel_cin", cascade = CascadeType.ALL)
+    private HrAdministrator hradministrator;
+
+    @OneToMany(mappedBy = "personnel",
+            cascade = CascadeType.ALL)
     private List<Absence> absenceList;
-    @OneToMany(mappedBy = "personnel_cin", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "personnel",
+            cascade = CascadeType.ALL)
     private List<Conge> congeList;
-    @OneToMany(mappedBy = "personnel_cin", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "personnel",
+            cascade = CascadeType.ALL)
     private List<Contract> contractList;
+
+    @OneToMany(mappedBy = "employee",
+            cascade = CascadeType.ALL)
+    private List<Salary> salaryList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "employee",
+            cascade = CascadeType.ALL)
+    private List<Advantage> advantageList = new ArrayList<>();
+
+
 
 
 }

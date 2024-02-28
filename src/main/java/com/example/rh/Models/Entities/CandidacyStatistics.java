@@ -13,8 +13,10 @@ import lombok.*;
 public class CandidacyStatistics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
+    private Long id ;
+
     private Integer NbreCandidatureParOffre;
+
     @ManyToOne
     @JoinColumn(name = "offre_id")
     private  Offer offer;

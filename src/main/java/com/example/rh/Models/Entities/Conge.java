@@ -2,6 +2,7 @@ package com.example.rh.Models.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
 
@@ -14,9 +15,13 @@ import java.time.LocalDate;
 @Table
 public class Conge {
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private LocalDate startdate;
+
     private LocalDate enddate;
+
     @ManyToOne
     @JoinColumn(name = "personnel_cin")
     private Personnel personnel;
