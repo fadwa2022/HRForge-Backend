@@ -12,13 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Candidate {
+public class Candidate extends User  {
+
     @Id
     private String cin;
-    private String firstName;
-    private String lastName;
-    private String email;
-    @Lob
-    private byte[] cvCandidat;
+
+    private String cvCandidat;
+
+    @OneToMany(mappedBy = "candidate",
+            cascade = CascadeType.ALL)
+    private  List<Application> applicationList;
 
 }

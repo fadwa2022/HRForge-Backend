@@ -1,5 +1,6 @@
-package com.example.rh.Models.Entities;
+package com.example.rh.Models.Dtos.Reponse;
 
+import com.example.rh.Models.Entities.Personnel;
 import com.example.rh.Models.Enum.Contracttype;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,15 +10,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-@Builder
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
-@Table
-public class Contract {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ContractResponseDTO {
+    private Integer id;
 
     private LocalDate startcontract;
 
@@ -27,14 +24,7 @@ public class Contract {
 
     private Double Remuneration;
 
-    @ManyToOne
-    @JoinColumn(name = "personnel_cin")
-
     private Personnel personnel;
 
-    @Enumerated(EnumType.STRING)
-
     private Contracttype contractType;
-
-
 }

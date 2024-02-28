@@ -1,6 +1,12 @@
 package com.example.rh.Models.Dtos.Request;
+import com.example.rh.Models.Entities.Contract;
+import com.example.rh.Models.Entities.HrAdministrator;
+import com.example.rh.Models.Entities.Offer;
+import com.example.rh.Models.Entities.Personnel;
+import com.example.rh.Models.Enum.Contracttype;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +19,39 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OfferRequestDTO {
-    private LocalDate dateCreation;
+    @NotBlank
+    private String title;
 
     @NotBlank(message = "Description is mandatory")
     private String description;
+
+    private String city;
+
+    @PositiveOrZero
+    private Double salary;
+
+    private String image;
+
+    private LocalDate dateCreation;
 
     @NotBlank(message = "Profile is mandatory")
     private String profile;
 
     @NotNull(message = "HR Administrato ID is mandatory")
-    private Integer hrAdministratoId;
+    private String  hrAdministratoId;
 
+    public Offer toModel(){
+        HrAdministrator hrAdministrator= HrAdministrator.builder().cin(hrAdministratoId).build();
+        return Offer.
+                builder()
+                .city(city)
+                .Profile(profile)
+                .hradministrator(hrAdministrator)
+                .image(image)
+                .salary(salary)
+                .title(title)
+                .description(description)
+                .dateCreation(dateCreation)
+                .build();
+    }
 }

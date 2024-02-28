@@ -11,12 +11,14 @@ public class ApplicationRequestDTO {
     private String candidateCin;
 
     @NotNull(message = "Offer is mandatory")
-    private Integer offerId;
+    private Long offerId;
 
     private String etatCandidature;
     public Application toModel() {
         Candidate candidate = Candidate.builder().cin(candidateCin).build();
+
         Offer offer = Offer.builder().id(offerId).build();
+
         EtatCandidature etatCandidatureEnum = EtatCandidature.valueOf(etatCandidature);
 
         Application application = Application.builder()
