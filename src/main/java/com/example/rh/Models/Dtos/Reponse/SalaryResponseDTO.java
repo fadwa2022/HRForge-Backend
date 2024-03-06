@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class SalaryResponseDTO {
 
-    private Integer id;
+    private Long id;
 
     private LocalDate remunerationDate;
 

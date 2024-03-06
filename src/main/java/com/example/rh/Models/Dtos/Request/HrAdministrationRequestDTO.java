@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class HrAdministrationRequestDTO {
+public class HrAdministrationRequestDTO extends UserRequestDTO {
     @NotNull(message = "Company ID is mandatory")
     private Long companyId;
 

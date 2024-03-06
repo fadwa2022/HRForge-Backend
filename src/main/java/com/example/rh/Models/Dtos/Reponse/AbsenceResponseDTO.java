@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AbsenceResponseDTO {
-    private Integer id;
+    private Long id;
     private LocalDate missingDate;
     private LocalDate returnDate;
     private Integer missingDuration;

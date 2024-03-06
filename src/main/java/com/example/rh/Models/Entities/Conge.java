@@ -18,9 +18,9 @@ public class Conge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate startdate;
+    private LocalDate startDate;
 
-    private LocalDate enddate;
+    private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name = "personnel_cin")
