@@ -19,9 +19,7 @@ public class Absence {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private LocalDate missingdate;
-
 
     private LocalDate Returndate;
 

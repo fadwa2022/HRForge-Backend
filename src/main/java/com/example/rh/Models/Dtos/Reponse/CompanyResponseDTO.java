@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 public class CompanyResponseDTO {
-    private Integer id;
+    private Long id;
     private String name;
     private String address;
     private String numFiscal;

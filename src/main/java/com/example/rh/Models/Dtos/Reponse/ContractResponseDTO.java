@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 public class ContractResponseDTO {
-    private Integer id;
+    private Long id;
 
     private LocalDate startcontract;
 

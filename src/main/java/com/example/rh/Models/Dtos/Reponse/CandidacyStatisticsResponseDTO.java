@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class CandidacyStatisticsResponseDTO {
-    private Integer id;
+    private Long id;
     private Integer nbreCandidatureParOffre;
     private Integer offreId;
 }

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 public class CongeResponseDTO {
-    private Integer id;
+    private Long id;
     private LocalDate startdate;
     private LocalDate enddate;
     private PersonnelResponseDTO personnelCin;

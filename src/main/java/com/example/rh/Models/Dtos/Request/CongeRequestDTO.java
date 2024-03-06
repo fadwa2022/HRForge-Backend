@@ -27,8 +27,8 @@ public class CongeRequestDTO {
         return Conge.
                 builder()
                 .personnel(personnel1)
-                .enddate(enddate)
-                .startdate(startdate)
+                .endDate(enddate)
+                .startDate(startdate)
                 .build();
     }
 }

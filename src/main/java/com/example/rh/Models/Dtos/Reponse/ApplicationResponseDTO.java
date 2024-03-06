@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ApplicationResponseDTO {
-    private Integer id;
+    private Long id;
     private CandidateResponseDTO candidate;
     private OfferResponseDTO offer;
     @Enumerated
