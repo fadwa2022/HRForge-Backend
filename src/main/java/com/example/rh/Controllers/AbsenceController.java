@@ -29,7 +29,7 @@ public class AbsenceController {
         return absenceService.getById(id);
     }
 
-    @GetMapping("/{cin}")
+    @GetMapping("/personnel/{cin}")
     public List<AbsenceResponseDTO> getAbsenceByPersonnel(@PathVariable String cin) {
         return absenceService.getAbsenceByPersonnel(cin);
     }
@@ -58,7 +58,7 @@ public class AbsenceController {
     @PutMapping("/{id}")
     public AbsenceResponseDTO updateAbsence(@PathVariable Long id,
                                             @Valid @RequestBody AbsenceRequestDTO request) {
-        return null; // Replace with actual implementation
+        return absenceService.updateAbsence(id,request);
     }
 
     @DeleteMapping("/{id}")

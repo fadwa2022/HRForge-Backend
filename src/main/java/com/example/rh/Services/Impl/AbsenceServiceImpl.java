@@ -9,6 +9,7 @@ import com.example.rh.Models.suppl.AbsenceResponse;
 import com.example.rh.Repository.AbsenceRepository;
 import com.example.rh.Repository.PersonnelRepository;
 import com.example.rh.Services.AbsenceService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -50,6 +51,9 @@ public class AbsenceServiceImpl implements AbsenceService {
     @Override
     public AbsenceResponseDTO create(AbsenceRequestDTO request) {
         Absence absence = absenceMapper.reqToEntity(request);
+        Personnel personnel = personnelRepository.findByCin(request.getPersonnel()).get();
+
+        absence.setPersonnel(personnel);
         Absence savedAbsence = absenceRepository.save(absence);
         return absenceMapper.toRes(savedAbsence);
     }
@@ -60,14 +64,30 @@ public class AbsenceServiceImpl implements AbsenceService {
     }
 
     @Override
+    public AbsenceResponseDTO updateAbsence(Long id, AbsenceRequestDTO request) {
+        Absence absenceToUpdate = absenceRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Absence not found with id: " + id));
+
+        absenceToUpdate.setMissingdate(absenceToUpdate.getMissingdate());
+        absenceToUpdate.setReturndate(request.getReturnDate());
+        absenceToUpdate.setMissingduration(request.getMissingDuration());
+        absenceToUpdate.setMissingmotif(request.getMissingMotif());
+
+        // Enregistrez les modifications dans la base de données
+        Absence updatedAbsence = absenceRepository.save(absenceToUpdate);
+
+        // Mapper l'entité mise à jour vers un DTO et renvoyer le DTO
+        return absenceMapper.toRes(updatedAbsence);
+    }
+
+    @Override
     public void deleteById(Long id) {
         absenceRepository.deleteById(id);
     }
 
     @Override
     public List<AbsenceResponseDTO> getAbsenceByPersonnel(String cin) {
-        Personnel personnel = personnelRepository.findByCin(cin).get();
-        List<Absence> absences = absenceRepository.findByPersonnel(personnel);
+        List<Absence> absences = absenceRepository.findByPersonnelCin(cin);
         List<AbsenceResponseDTO> responseDtos = new ArrayList<>();
 
         if (absences == null || absences.isEmpty()) {
@@ -81,7 +101,7 @@ public class AbsenceServiceImpl implements AbsenceService {
 
     @Override
     public List<AbsenceResponseDTO> getAbsenceByMissingDate(String missingDate) {
-        List<Absence> absences = absenceRepository.findByMissingdate(missingDate);
+        List<Absence> absences = absenceRepository.findByMissingdate(LocalDate.parse(missingDate));
         List<AbsenceResponseDTO> responseDtos = new ArrayList<>();
 
         if (absences == null || absences.isEmpty()) {
@@ -95,7 +115,7 @@ public class AbsenceServiceImpl implements AbsenceService {
 
     @Override
     public AbsenceResponse getAbsenceByPersonnelAndMissingDate(String cin, String missingDate) {
-        List<Absence> absences = absenceRepository.findByMissingdate(missingDate);
+        List<Absence> absences = absenceRepository.findByMissingdate(LocalDate.parse(missingDate));
         List<AbsenceResponseDTO> responseDtos = new ArrayList<>();
 
         int missingMonth = Integer.parseInt(missingDate.split("-")[1]);

@@ -3,9 +3,11 @@ package com.example.rh.Models.Mappers;
 import com.example.rh.Models.Dtos.Reponse.PersonnelResponseDTO;
 import com.example.rh.Models.Dtos.Request.PersonnelRequestDTO;
 import com.example.rh.Models.Entities.Personnel;
+import com.example.rh.Repository.HrAdministratorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class PersonnelMapper implements IMapper<Personnel, PersonnelRequestDTO, PersonnelResponseDTO> {
@@ -13,13 +15,15 @@ public class PersonnelMapper implements IMapper<Personnel, PersonnelRequestDTO, 
     private final ModelMapper modelMapper;
 
     @Autowired
-    public PersonnelMapper(ModelMapper modelMapper) {
+    public PersonnelMapper( ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
+
     }
 
     @Override
     public PersonnelResponseDTO toRes(Personnel personnel) {
-        return this.modelMapper.map(personnel, PersonnelResponseDTO.class);
+        return  this.modelMapper.map(personnel, PersonnelResponseDTO.class);
+
     }
 
     @Override

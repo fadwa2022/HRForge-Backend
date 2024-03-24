@@ -1,4 +1,8 @@
 package com.example.rh.Models.Dtos.Reponse;
+import com.example.rh.Models.Entities.Company;
+import com.example.rh.Models.Entities.Generaladministration;
+import com.example.rh.Models.Entities.Offer;
+import com.example.rh.Models.Entities.Personnel;
 import lombok.*;
 
 import java.util.List;
@@ -8,13 +12,15 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HrAdministrationResponseDTO extends UserResponseDTO {
+public class HrAdministrationResponseDTO {
 
-    private Long companyId;
+    private Long id;
 
-    private Long generalAdministrationId;
+    private PersonnelResponseDTO personnel;
 
-    private List<OfferResponseDTO> offersRH;
+    private CompanyResponseDTO companyId;
 
-    private List<PersonnelResponseDTO> personnelsRH;
+    private GeneraladministrationResponseDTO generalAdministrationId;
+
+
 }

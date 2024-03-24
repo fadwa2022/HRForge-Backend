@@ -22,11 +22,14 @@ public class AdministratorRequestDTO {
     private String generaladministrationCin;
     public HrAdministrator toModel(){
         Company company= Company.builder().id(companyId).build();
-        Generaladministration generaladministration =Generaladministration.builder().cin(generaladministrationCin).build();
+        Personnel personnel = Personnel.builder().cin(cin).build();
+        Personnel admin = Personnel.builder().cin(generaladministrationCin).build();
+
+        Generaladministration generaladministration =Generaladministration.builder().personnel(admin).build();
         return HrAdministrator.
                 builder()
                 .generaladministration(generaladministration)
-                .cin(cin)
+                .personnel(personnel)
                 .company(company)
                 .build();
     }

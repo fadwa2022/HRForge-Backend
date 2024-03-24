@@ -3,7 +3,6 @@ package com.example.rh.Models.Entities;
 import com.example.rh.Models.Enum.Contracttype;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDate;
 

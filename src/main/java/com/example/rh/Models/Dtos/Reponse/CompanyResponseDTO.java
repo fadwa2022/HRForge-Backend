@@ -14,6 +14,4 @@ public class CompanyResponseDTO {
     private String name;
     private String address;
     private String numFiscal;
-    private List<GeneraladministrationResponseDTO> generaladministrationsList ;
-    private List<HrAdministrationResponseDTO> hradministrationsList;
 }

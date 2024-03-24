@@ -6,7 +6,7 @@ import com.example.rh.Models.Entities.Salary;
 
 import java.util.List;
 
-public interface SalaryService extends Service<Salary,Long, SalaryResponseDTO, SalaryRequestDTO> {
+public interface SalaryService extends Service<Salary,Long, SalaryRequestDTO, SalaryResponseDTO> {
     List<SalaryResponseDTO> getSalaryByRemunerationDate(String remunerationDate);
 
     List<SalaryResponseDTO> getSalaryByPersonnel(String cin);

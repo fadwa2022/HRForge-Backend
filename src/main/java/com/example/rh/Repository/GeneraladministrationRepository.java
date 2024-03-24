@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface GeneraladministrationRepository extends JpaRepository<Generaladministration,String> {
+public interface GeneraladministrationRepository extends JpaRepository<Generaladministration,Long> {
 }

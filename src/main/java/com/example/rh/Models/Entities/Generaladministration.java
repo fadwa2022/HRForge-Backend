@@ -12,9 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class Generaladministration extends User {
+public class Generaladministration  {
     @Id
-    private String cin;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
+    @OneToOne
+    private Personnel personnel;
 
     @ManyToOne
     @JoinColumn(name = "company_id")

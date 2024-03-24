@@ -1,6 +1,5 @@
 package com.example.rh.Configuration.security;
 
-import com.example.rh.Models.Entities.Personnel;
 import com.example.rh.Repository.PersonnelRepository;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,8 @@ package com.example.rh.Models.Mappers;
 import com.example.rh.Models.Dtos.Reponse.AbsenceResponseDTO;
 import com.example.rh.Models.Dtos.Request.AbsenceRequestDTO;
 import com.example.rh.Models.Entities.Absence;
+import com.example.rh.Models.Entities.Personnel;
+import com.example.rh.Repository.PersonnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -11,10 +13,12 @@ import org.springframework.stereotype.Component;
 public class AbsenceMapper implements IMapper<Absence, AbsenceRequestDTO,AbsenceResponseDTO> {
 
     private final ModelMapper modelMapper;
+    private final PersonnelRepository personnelRepository;
 
     @Autowired
-    public AbsenceMapper(ModelMapper modelMapper) {
+    public AbsenceMapper(ModelMapper modelMapper, PersonnelRepository personnelRepository) {
         this.modelMapper = modelMapper;
+        this.personnelRepository= personnelRepository;
     }
 
     @Override

@@ -13,4 +13,5 @@ public interface PersonnelRepository extends JpaRepository<Personnel,String> {
     Optional<Personnel> findByUsername(String username);
 
     Optional<Personnel> findByCin(String cin);
+
 }

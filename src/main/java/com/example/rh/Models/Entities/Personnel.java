@@ -1,5 +1,6 @@
 package com.example.rh.Models.Entities;
 
+import com.example.rh.Models.Enum.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -21,28 +22,20 @@ public class Personnel extends User {
 
     private LocalDate dateofbirth;
 
-    @ManyToOne
-    @JoinColumn(name = "rhadministrato_id")
-    private HrAdministrator hradministrator;
 
-    @OneToMany(mappedBy = "personnel",
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personnel")
     private List<Absence> absenceList;
 
-    @OneToMany(mappedBy = "personnel",
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personnel")
     private List<Conge> congeList;
 
-    @OneToMany(mappedBy = "personnel",
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "personnel")
     private List<Contract> contractList;
 
-    @OneToMany(mappedBy = "employee",
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee")
     private List<Salary> salaryList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "employee",
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee")
     private List<Advantage> advantageList = new ArrayList<>();
 
 

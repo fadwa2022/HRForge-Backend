@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
+
 public class UserRequestDTO {
     @NotBlank(message = "Le prénom est obligatoire")
     private String first_name;
@@ -25,6 +26,7 @@ public class UserRequestDTO {
     private String telephone;
 
     private String address;
+    private String role;
 
 }
 

@@ -41,7 +41,9 @@ public class OfferRequestDTO {
     private String  hrAdministratoId;
 
     public Offer toModel(){
-        HrAdministrator hrAdministrator= HrAdministrator.builder().cin(hrAdministratoId).build();
+        Personnel personnel = Personnel.builder().cin(hrAdministratoId).build();
+
+        HrAdministrator hrAdministrator= HrAdministrator.builder().personnel(personnel).build();
         return Offer.
                 builder()
                 .city(city)

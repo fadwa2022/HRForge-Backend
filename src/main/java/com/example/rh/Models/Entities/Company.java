@@ -1,5 +1,6 @@
 package com.example.rh.Models.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,7 @@ public class Company {
 
     private String email;
 
-    private String adress;
+    private String address;
 
     private String image;
 

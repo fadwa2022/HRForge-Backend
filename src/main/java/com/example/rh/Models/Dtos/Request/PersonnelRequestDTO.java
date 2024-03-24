@@ -3,6 +3,7 @@ package com.example.rh.Models.Dtos.Request;
 import com.example.rh.Models.Entities.HrAdministrator;
 import com.example.rh.Models.Entities.Offer;
 import com.example.rh.Models.Entities.Personnel;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -14,7 +15,25 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonnelRequestDTO extends UserRequestDTO {
+public class PersonnelRequestDTO {
+    @NotBlank(message = "Le prénom est obligatoire")
+    private String first_name;
+
+    @NotBlank(message = "Le nom de famille est obligatoire")
+    private String last_name;
+
+    @Email(message = "L'email doit être valide")
+    @NotBlank(message = "L'email est obligatoire")
+    private String email;
+
+    private String password;
+
+    private String image;
+
+    private String telephone;
+
+    private String address;
+    private String role;
 
     @NotBlank(message = "Le Cin est obligatoire")
     private String cin;
@@ -22,13 +41,6 @@ public class PersonnelRequestDTO extends UserRequestDTO {
     @NotNull
     private LocalDate dateofbirth;
 
-    private String hradministrator;
-    public Personnel toModel(){
-        HrAdministrator hrAdministrator= HrAdministrator.builder().cin(hradministrator).build();
-        return Personnel.
-                builder()
-                .hradministrator(hrAdministrator)
-                .cin(cin)
-                .build();
-    }
+
+
 }

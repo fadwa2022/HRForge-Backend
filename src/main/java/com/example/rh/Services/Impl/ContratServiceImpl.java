@@ -1,5 +1,6 @@
 package com.example.rh.Services.Impl;
 
+import com.example.rh.Exceptions.PersonnelNotFoundException;
 import com.example.rh.Models.Dtos.Reponse.ContractResponseDTO;
 import com.example.rh.Models.Dtos.Request.ContractRequestDTO;
 import com.example.rh.Models.Entities.Contract;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,11 +61,19 @@ public class ContratServiceImpl implements ContratService {
     @Override
     public ContractResponseDTO create(ContractRequestDTO request) {
         Contract contract = contractMapper.reqToEntity(request);
+        LocalDate localDate = LocalDate.now();
+        contract.setStartcontract(localDate);
 
-        Contract savedContract = contractRepository.save(contract);
-
-        return contractMapper.toRes(savedContract);
+        Optional<Personnel> personnelOptional = personnelRepository.findByCin(request.getPersonnelCin());
+        if (personnelOptional.isPresent()) {
+            contract.setPersonnel(personnelOptional.get());
+            Contract savedContract = contractRepository.save(contract);
+            return contractMapper.toRes(savedContract);
+        } else {
+            throw new PersonnelNotFoundException("Personnel not found for Cin: " + request.getPersonnelCin());
+        }
     }
+
 
     @Override
     public ContractResponseDTO update(String id, ContractRequestDTO request) {
@@ -78,7 +90,7 @@ public class ContratServiceImpl implements ContratService {
             return null;
         }
 
-        existingContract.setContractType(request.toModel().getContractType());
+        existingContract.setContractType(contractMapper.reqToEntity(request).getContractType());
         existingContract.setEndcontract(request.getEndContract());
         contractRepository.save(existingContract);
 

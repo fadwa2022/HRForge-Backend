@@ -24,7 +24,7 @@ public class ContractResponseDTO {
 
     private Double Remuneration;
 
-    private Personnel personnel;
+    private PersonnelResponseDTO personnel;
 
-    private Contracttype contractType;
+    private String contractType;
 }

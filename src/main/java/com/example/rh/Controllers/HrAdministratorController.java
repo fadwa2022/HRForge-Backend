@@ -28,8 +28,15 @@ public class HrAdministratorController {
     }
 
     @GetMapping("/{cin}")
-    public ResponseEntity<HrAdministrationResponseDTO> getById(@PathVariable String  cin) {
-        HrAdministrationResponseDTO responseDTO = hrAdministratorService.getById(cin);
+    public ResponseEntity<HrAdministrationResponseDTO> getByCin(@PathVariable String  cin) {
+        HrAdministrationResponseDTO responseDTO = hrAdministratorService.getByPersonnelCin(cin);
+
+        return responseDTO != null ? ResponseEntity.ok(responseDTO) : ResponseEntity.notFound().build();
+    }
+    @GetMapping("/personnelusername/{username}")
+    public ResponseEntity<HrAdministrationResponseDTO> getByPersonnelUserName(@PathVariable String  username) {
+        HrAdministrationResponseDTO responseDTO = hrAdministratorService.getByPersonnelUserName(username);
+
         return responseDTO != null ? ResponseEntity.ok(responseDTO) : ResponseEntity.notFound().build();
     }
 
@@ -52,15 +59,21 @@ public class HrAdministratorController {
 
     @PutMapping("/{cin}")
     public ResponseEntity<HrAdministrationResponseDTO> update(@PathVariable String  cin,
-                                                              @RequestBody HrAdministrationRequestDTO requestDTO) {
-        HrAdministrationResponseDTO responseDTO = hrAdministratorService.update(cin,requestDTO);
+                                                              @RequestBody PersonnelRequestDTO requestDTO) {
+       HrAdministrationResponseDTO responseDTO = hrAdministratorService.UpdateHrPersonnel(cin,requestDTO);
 
         return responseDTO != null ? ResponseEntity.ok(responseDTO) : ResponseEntity.notFound().build();
+
     }
 
-    @DeleteMapping("/{cin}")
+  /*  @DeleteMapping("/{cin}")
     public ResponseEntity<Void> deleteById(@PathVariable String cin) {
-        hrAdministratorService.deleteById(cin);
+        hrAdministratorService.deleteByPersonnelCin(cin);
+        return ResponseEntity.noContent().build();
+    }*/
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        hrAdministratorService.deleteById(id);;
         return ResponseEntity.noContent().build();
     }
 

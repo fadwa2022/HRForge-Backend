@@ -11,4 +11,5 @@ public interface AbsenceService extends Service<Absence, Long, AbsenceRequestDTO
      List<AbsenceResponseDTO> getAbsenceByPersonnel( String cin) ;
      List<AbsenceResponseDTO> getAbsenceByMissingDate(String missingDate);
      AbsenceResponse getAbsenceByPersonnelAndMissingDate(String cin, String missingDate);
+      AbsenceResponseDTO updateAbsence(Long id, AbsenceRequestDTO request);
 }

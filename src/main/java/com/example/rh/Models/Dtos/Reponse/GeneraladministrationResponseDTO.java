@@ -12,7 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GeneraladministrationResponseDTO {
-    private String company;
-    private List<HrAdministrationResponseDTO> hradministratoList;
+
+    private  Long id ;
+    private PersonnelResponseDTO personnel;
 
 }

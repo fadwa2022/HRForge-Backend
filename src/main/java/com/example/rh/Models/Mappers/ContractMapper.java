@@ -3,6 +3,7 @@ package com.example.rh.Models.Mappers;
 import com.example.rh.Models.Dtos.Reponse.ContractResponseDTO;
 import com.example.rh.Models.Dtos.Request.ContractRequestDTO;
 import com.example.rh.Models.Entities.Contract;
+import com.example.rh.Models.Enum.Contracttype;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
